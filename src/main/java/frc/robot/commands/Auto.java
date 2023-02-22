@@ -21,8 +21,8 @@ public class Auto extends SequentialCommandGroup {
  // super(new FooCommand(), new BarCommand());
  // super();
  addCommands(new DriveForward50(m_driveTrainSubsystem, 180));
- //new DriveForwardFiveFeetCommand(m_driveTrainSubsystem));
- //ConveyerbeltAuto(m_ConveyerbeltSubsystem, -0.95, 90)
+ //new (DriveForwardFiveFeetCommand(m_driveTrainSubsystem));
+ // ConveyerbeltAuto(m_ConveyerbeltSubsystem, -0.95, 90)
  }
 }
 // LOL WE CHANGED IT TO 180 JUST TO BE SAFE !!!

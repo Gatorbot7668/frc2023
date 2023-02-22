@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.DriveForward50;
 import frc.robot.commands.DriveManuallyCommand;
+import frc.robot.commands.ElevatorCommand;
 import frc.robot.commands.LiftCommand;
 import frc.robot.commands.PhotonVision;
 import frc.robot.commands.Seek;
@@ -69,7 +70,8 @@ public class RobotContainer {// The robot's subsystems and commands are defined 
 
     JoystickButton button_A = new JoystickButton(m_controller, XboxController.Button.kA.value);
    // button_A.whenPressed(new IntakeWheelsCommand(m_wintake, 0.5, 30));
-   button_A.whenPressed(new GrabCommand());
+    //button_A.whileHeld(new GrabCommand());
+    button_A.whileHeld(new ElevatorCommand(null, getJoystickYValue(), getJoystickXValue()));
 
     JoystickButton button_X = new JoystickButton(m_controller, XboxController.Button.kX.value);
     // button_X.whenPressed(new LiftCommand(m_lift, .7, 40));
