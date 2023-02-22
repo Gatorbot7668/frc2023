@@ -9,6 +9,9 @@ import frc.robot.Constants;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import static edu.wpi.first.wpilibj.DoubleSolenoid.Value.*;
+
+import com.sun.jdi.Value;
+
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 //import edu.wpi.first.wpilibj.motorcontrol.Talon;
 
@@ -29,8 +32,9 @@ public class GrabberSubsystem extends SubsystemBase {
 
     
       public void pitchup(){
-         pitchSolenoid.set(value.kForward);
-    
+         pitchSolenoid.set(Value.kForward);
+    // specify class for kFoward
+    // 
       }
     
       public void pitchdown(){
