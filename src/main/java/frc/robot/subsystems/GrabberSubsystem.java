@@ -35,7 +35,7 @@ public class GrabberSubsystem extends SubsystemBase {
       public void pitchup(){
          pitchSolenoid.set(Value.kForward);
     // specify class for kFoward
-    // v
+    // 
       }
     
       public void pitchdown(){
