@@ -9,18 +9,16 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.DriveForward50;
 import frc.robot.commands.DriveManuallyCommand;
 import frc.robot.commands.ElevatorCommand;
-import frc.robot.commands.LiftCommand;
 import frc.robot.commands.PhotonVision;
 import frc.robot.commands.Seek;
 import frc.robot.commands.ShowTargets;
 import frc.robot.commands.TurnRobot;
 import frc.robot.subsystems.DriveTrainSubsystem;
-import frc.robot.subsystems.LiftSubsystem;
+import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.GrabberSubsystem;
 import frc.robot.subsystems.IntakeReleaseSubsystem;
 import frc.robot.subsystems.IntakeWheelsSubsystem;
 import frc.robot.subsystems.ConveyerbeltSubsystem;
-import frc.robot.subsystems.GrabberSubsystem;
 import frc.robot.commands.IntakeReleaseCommand;
 import frc.robot.commands.IntakeWheelsCommand;
 import frc.robot.commands.Auto;
@@ -31,7 +29,6 @@ import frc.robot.commands.GrabCommand;
 public class RobotContainer {// The robot's subsystems and commands are defined here...
   private final XboxController m_controller = new XboxController(0);
   private final DriveTrainSubsystem m_driveTrainSubsystem = new DriveTrainSubsystem();
-  private final LiftSubsystem m_lift = new LiftSubsystem();
   private final IntakeReleaseSubsystem m_rintake = new IntakeReleaseSubsystem ();
   private final ConveyerbeltSubsystem m_conveyer = new ConveyerbeltSubsystem ();
   private final IntakeWheelsSubsystem m_wintake = new IntakeWheelsSubsystem ();
@@ -40,7 +37,7 @@ public class RobotContainer {// The robot's subsystems and commands are defined 
   private final PhotonVision m_vision = new PhotonVision(m_driveTrainSubsystem);
   public static GrabberSubsystem m_Grabber = new GrabberSubsystem();
   public static ShowTargets m_showTargets = new ShowTargets();
-  
+  public final ElevatorSubsystem m_elevatorSubsystem = new ElevatorSubsystem();
  
  // private final FlapsSubsystem m_flaps = new FlapsSubsystem();
  
@@ -71,12 +68,11 @@ public class RobotContainer {// The robot's subsystems and commands are defined 
     JoystickButton button_A = new JoystickButton(m_controller, XboxController.Button.kA.value);
    // button_A.whenPressed(new IntakeWheelsCommand(m_wintake, 0.5, 30));
     //button_A.whileHeld(new GrabCommand());
-    button_A.whileHeld(new ElevatorCommand(null, getJoystickYValue(), getJoystickXValue()));
+    button_A.whileHeld (new ElevatorCommand(m_elevatorSubsystem, 0.5, 0.5));
 
     JoystickButton button_X = new JoystickButton(m_controller, XboxController.Button.kX.value);
     // button_X.whenPressed(new LiftCommand(m_lift, .7, 40));
     button_X.whileHeld(m_showTargets);
-
 
     JoystickButton button_Y = new JoystickButton(m_controller, XboxController.Button.kY.value);
     // button_Y.whenPressed(new LiftCommand(m_lift, -.8, 40));

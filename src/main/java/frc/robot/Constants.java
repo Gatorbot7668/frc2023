@@ -17,7 +17,7 @@ public final class Constants {
   public static final int RAMP_RIGHT = 1;
   public static final int RAMP_LEFT = 2;
 
-  public static final int LIFT_PORT = 0; //change port # once it's set up
+  public static final int LIFT_PORT = 10; //change port # once it's set up
 
   public static final int FRONT_LEFT_TALON_ID = 1;
   public static final int REAR_LEFT_TALON_ID = 2;
