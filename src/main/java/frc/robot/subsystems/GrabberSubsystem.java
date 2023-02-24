@@ -9,69 +9,64 @@ import frc.robot.Constants;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import static edu.wpi.first.wpilibj.DoubleSolenoid.Value.*;
-
-import com.sun.jdi.Value;
-
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
-//import edu.wpi.first.wpilibj.motorcontrol.Talon;
-
-
-
 
 public class GrabberSubsystem extends SubsystemBase {
   /** Creates a new grabber. */
   Compressor pcmCompressor = new Compressor(0, PneumaticsModuleType.CTREPCM);
-  DoubleSolenoid pitchSolenoid= null;
+  DoubleSolenoid pitchSolenoid = null;
   boolean pressureSwitch;
+
   public GrabberSubsystem() {
-        pitchSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, Constants.PNEUMATICS_SOLENOID_DEPLOY, Constants.PNEUMATICS_SOLENOID_RETRACT);
-    
-    }
-    
+    pitchSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, Constants.PNEUMATICS_SOLENOID_DEPLOY,
+        Constants.PNEUMATICS_SOLENOID_RETRACT);
+  }
 
+  public void pitchup() {
+    pitchSolenoid.set(kForward);
+    // specify class for kFoward (Value)
+    //
+  }
 
-    
-      public void pitchup(){
-         pitchSolenoid.set(Value.kForward);
-    // specify class for kFoward
-    // 
-      }
-    
-      public void pitchdown(){
-        pitchSolenoid.set(kReverse);
-      }
-    
-      public void CompressorOn(){
-        pcmCompressor.enableDigital();
-      }
-      public void CompressorOff(){
-        pcmCompressor.disable();
-      }
-    
+  public void pitchdown() {
+    pitchSolenoid.set(kReverse);
+  }
+
+  public void CompressorOn() {
+    pcmCompressor.enableDigital();
+  }
+
+  public void CompressorOff() {
+    pcmCompressor.disable();
+  }
 
   @Override
   public void periodic() {
-    /* 
-    pcmCompressor.setClosedLoopControl(m_driverController.getRawButton(GrabCommand));
-    if(m_driverController.getRawButton(Mappings.btnSolenoidIn)){
-      m_piston.set(pitchSolenoid.set(kForward));
-    }else if (m_driverController.getRawButton(Mappings.btnSolenoidOut)){m_piston.set(pitchSolenoid.set(kReverse));
-    }else {m_piston.set(pitchSolenoid.set(kOff));}
-    */
+    /*
+     * pcmCompressor.setClosedLoopControl(m_driverController.getRawButton(
+     * GrabCommand));
+     * if(m_driverController.getRawButton(Mappings.btnSolenoidIn)){
+     * m_piston.set(pitchSolenoid.set(kForward));
+     * }else if
+     * (m_driverController.getRawButton(Mappings.btnSolenoidOut)){m_piston.set(
+     * pitchSolenoid.set(kReverse));
+     * }else {m_piston.set(pitchSolenoid.set(kOff));}
+     */
 
-    /* 
-        // This method will be called once per scheduler run
-        pressureSwitch =     pcmCompressor.getPressureSwitchValue();
-        if (pressureSwitch) {
-          pcmCompressor.disable();
-        }
-        else {
-          pcmCompressor.enableDigital();
-        }
-        */
+    /*
+     * // This method will be called once per scheduler run
+     * pressureSwitch = pcmCompressor.getPressureSwitchValue();
+     * if (pressureSwitch) {
+     * pcmCompressor.disable();
+     * }
+     * else {
+     * pcmCompressor.enableDigital();
+     * }
+     */
     // This method will be called once per scheduler run
   }
-  public void initDefaultCommand(){
-    
+
+  public void initDefaultCommand() {
+
   }
 }

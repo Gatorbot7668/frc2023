@@ -10,25 +10,21 @@ import frc.robot.Robot;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.GrabberSubsystem;
 
-
 public class GrabCommand extends CommandBase {
   /** Creates a new GrabCommand. */
   public GrabCommand() {
-    // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.m_Grabber);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-
     RobotContainer.m_Grabber.pitchup();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-     
   }
 
   // Called once the command ends or is interrupted.
@@ -36,7 +32,7 @@ public class GrabCommand extends CommandBase {
   public void end(boolean interrupted) {
 
     RobotContainer.m_Grabber.pitchdown();
-    
+
   }
 
   // Returns true when the command should end.
