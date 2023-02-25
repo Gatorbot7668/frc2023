@@ -17,8 +17,6 @@ public class ElevatorSubsystem extends SubsystemBase {
   public ElevatorSubsystem() {
     // The device is Spark, but for some reason PWMVictorSPX works better
     m_motor = null ; //  new PWMVictorSPX(Constants.LIFT_PORT);   // 3 is the RIO PWM por\
-
-
   }
 
   public void setSpeed(double speed) {

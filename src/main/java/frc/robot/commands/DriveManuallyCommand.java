@@ -44,6 +44,5 @@ public class DriveManuallyCommand extends CommandBase {
     @Override
     public boolean isFinished() {
         return false;
-
     }
 }
