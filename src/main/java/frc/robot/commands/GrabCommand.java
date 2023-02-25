@@ -4,22 +4,19 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Robot;
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.GrabberSubsystem;
 
 public class GrabCommand extends CommandBase {
   /** Creates a new GrabCommand. */
   public GrabCommand() {
-    addRequirements(RobotContainer.m_Grabber);
+    addRequirements(RobotContainer.m_grabber);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.m_Grabber.pitchup();
+    RobotContainer.m_grabber.pitchup();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -30,9 +27,7 @@ public class GrabCommand extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-
-    RobotContainer.m_Grabber.pitchdown();
-
+    RobotContainer.m_grabber.pitchdown();
   }
 
   // Returns true when the command should end.

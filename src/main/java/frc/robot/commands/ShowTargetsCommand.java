@@ -10,11 +10,11 @@ import org.photonvision.targeting.PhotonPipelineResult;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class ShowTargets extends CommandBase {
+public class ShowTargetsCommand extends CommandBase {
   PhotonCamera camera = new PhotonCamera("OV5647");
 
   /** Creates a new ShowTargets. */
-  public ShowTargets() {
+  public ShowTargetsCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
