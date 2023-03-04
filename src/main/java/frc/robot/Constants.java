@@ -19,7 +19,7 @@ public final class Constants {
 
   public static final int GRABBER_PORT = 0;
   public static final int ARM_PORT = 6;
-  public static final int SPOOL_PORT = 5;
+  public static final int SPOOL_PORT = 8;
   public static final int ELEVATOR_PORT = 2;
 
   public static final int FRONT_LEFT_TALON_ID = 1;

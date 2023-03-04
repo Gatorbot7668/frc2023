@@ -29,11 +29,13 @@ _diffArmDrive.setMaxOutput(.55);
     chain = Constants.ARM_CHAIN_RATIO*chain;
     spool = Constants.ARM_SPOOL_RATIO*spool;
 
-    _diffArmDrive.arcadeDrive(chain, spool);
+    _diffArmDrive.tankDrive(chain, spool);
+    
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    _diffArmDrive.tankDrive(0, 0);
   }
 }
