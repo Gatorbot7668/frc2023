@@ -8,11 +8,11 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.GrabberSubsystem;
 
-public class GrabCommand extends CommandBase {
+public class GrabOpenCommand extends CommandBase {
   private GrabberSubsystem m_grabber;
 
   /** Creates a new GrabCommand. */
-  public GrabCommand(GrabberSubsystem grabber) {
+  public GrabOpenCommand(GrabberSubsystem grabber) {
     m_grabber = grabber;
     addRequirements(m_grabber);
   }
@@ -24,7 +24,7 @@ public class GrabCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-      m_grabber.close();
+      m_grabber.open();
   }
 
   // Called once the command ends or is interrupted.

@@ -1,72 +1,45 @@
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
-// 2/10/23 --> first commit from new computer!!!!!!!!!
+
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.motorcontrol.PWMVictorSPX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import edu.wpi.first.wpilibj.Compressor;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import static edu.wpi.first.wpilibj.DoubleSolenoid.Value.*;
-import edu.wpi.first.wpilibj.PneumaticsModuleType;
 
 public class GrabberSubsystem extends SubsystemBase {
-  /** Creates a new grabber. */
-  Compressor pcmCompressor = new Compressor(0, PneumaticsModuleType.CTREPCM);
-  DoubleSolenoid pitchSolenoid = null;
-  boolean pressureSwitch;
-
+  PWMVictorSPX m_motor;
+  private int m_count = 0;
+  /** Creates a new GrabberSubsystem. */
   public GrabberSubsystem() {
-    pitchSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, Constants.PNEUMATICS_SOLENOID_DEPLOY,
-        Constants.PNEUMATICS_SOLENOID_RETRACT);
+  // The device is Spark, but for some reason PWMVictorSPX works better
+    m_motor = new PWMVictorSPX(Constants.GRABBER_PORT);
+    open();
   }
 
-  public void pitchup() {
-    pitchSolenoid.set(kForward);
-    // specify class for kFoward (Value)
-    //
+  public void close() {
+    m_motor.set(0.3);
   }
-
-  public void pitchdown() {
-    pitchSolenoid.set(kReverse);
+  
+  public void open() {
+    m_motor.set(-0.3);
   }
-
-  public void CompressorOn() {
-    pcmCompressor.enableDigital();
-  }
-
-  public void CompressorOff() {
-    pcmCompressor.disable();
+  
+  public void stop(){
+    m_motor.set(0);
   }
 
   @Override
-  public void periodic() {
-    /*
-     * pcmCompressor.setClosedLoopControl(m_driverController.getRawButton(
-     * GrabCommand));
-     * if(m_driverController.getRawButton(Mappings.btnSolenoidIn)){
-     * m_piston.set(pitchSolenoid.set(kForward));
-     * }else if
-     * (m_driverController.getRawButton(Mappings.btnSolenoidOut)){m_piston.set(
-     * pitchSolenoid.set(kReverse));
-     * }else {m_piston.set(pitchSolenoid.set(kOff));}
-     */
-
-    /*
-     * // This method will be called once per scheduler run
-     * pressureSwitch = pcmCompressor.getPressureSwitchValue();
-     * if (pressureSwitch) {
-     * pcmCompressor.disable();
-     * }
-     * else {
-     * pcmCompressor.enableDigital();
-     * }
-     */
+   public void periodic() {
     // This method will be called once per scheduler run
-  }
-
-  public void initDefaultCommand() {
-
+    //if (m_count > 0) {
+   //   if (m_count > 1) {
+    //    m_motor.set(-0.25);
+    //  } else {
+    //    m_motor.set(0);
+   //   }
+  //    m_count = m_count - 1;
+  //  }
   }
 }

@@ -4,33 +4,36 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ElevatorSubsystem;
 
 public class ElevatorCommand extends CommandBase {
     private final ElevatorSubsystem m_lift;
-    private final double m_speed;
-    private double m_count;
-    private final double m_limit;
+    private XboxController.Axis m_downAxis;
+    private XboxController m_driverController;
+    private XboxController.Axis m_upAxis;
 
-    public ElevatorCommand(ElevatorSubsystem lift, double speed, double limit) {
+    public ElevatorCommand(ElevatorSubsystem lift, XboxController driverController,
+                        XboxController.Axis downAxis, XboxController.Axis upAxis) {
         m_lift = lift;
-        m_speed = speed;
-        m_limit = limit;
+        m_driverController = driverController;
+        m_downAxis = downAxis;
+        m_upAxis = upAxis;
         addRequirements(m_lift);
     }
 
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        m_count = 0;
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        m_lift.setSpeed(m_speed);
-        m_count = m_count + 1;
+        double speed = - m_driverController.getRawAxis(m_downAxis.value) +
+                m_driverController.getRawAxis(m_upAxis.value);
+        m_lift.setSpeed(speed);
     }
 
     // Called once the command ends or is interrupted.
@@ -42,6 +45,6 @@ public class ElevatorCommand extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return m_count == m_limit;
+        return false;
     }
 }
