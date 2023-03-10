@@ -17,6 +17,7 @@ public class ArmDiffUpCommand extends CommandBase {
     m_diffArm = diffArm;
     m_direction = direction;
     addRequirements(m_diffArm);
+    m_diffArm.stopArm();
   }
 
   // Called when the command is initially scheduled.
@@ -26,13 +27,13 @@ public class ArmDiffUpCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_diffArm.liftArm(m_direction, m_direction);
+    m_diffArm.liftArm(m_direction);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_diffArm.liftArm(0, 0);
+    m_diffArm.stopArm();
   }
 
   // Returns true when the command should end.

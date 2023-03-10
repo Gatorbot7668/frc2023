@@ -8,11 +8,11 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.GrabberSubsystem;
 
-public class GrabCommand extends CommandBase {
+public class GrabCloseCommand extends CommandBase {
   private GrabberSubsystem m_grabber;
 
   /** Creates a new GrabCommand. */
-  public GrabCommand(GrabberSubsystem grabber) {
+  public GrabCloseCommand(GrabberSubsystem grabber) {
     m_grabber = grabber;
     addRequirements(m_grabber);
   }

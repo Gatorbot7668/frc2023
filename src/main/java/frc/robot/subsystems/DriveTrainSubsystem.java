@@ -1,6 +1,8 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
+import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -9,7 +11,10 @@ import frc.robot.Constants;
 
 public class DriveTrainSubsystem extends SubsystemBase {
   private final DifferentialDrive m_drive;
-  // private final AHRS m_navx;
+  SlewRateLimiter turnFilter = new SlewRateLimiter(100);
+  SlewRateLimiter moveFilter = new SlewRateLimiter(100);
+
+// private final AHRS m_navx;
 
   public DriveTrainSubsystem() {
     /*
@@ -30,7 +35,8 @@ public class DriveTrainSubsystem extends SubsystemBase {
 
     m_drive = new DifferentialDrive(left, right);
     m_drive.setDeadband(0.3);
-    m_drive.setMaxOutput(0.55);
+    m_drive.setMaxOutput(0.35);
+   // m_drive.setSafetyEnabled(false);
 
     // m_navx = new AHRS(SPI.Port.kMXP);
 
@@ -49,8 +55,8 @@ public class DriveTrainSubsystem extends SubsystemBase {
     move = move * 0.55;
     turn = turn * 0.55;
     */
-    m_drive.arcadeDrive(turn, move);
-    // m_drive.feed();
+    m_drive.arcadeDrive(turnFilter.calculate(turn), moveFilter.calculate(move));
+    m_drive.feed();
   }
 
   public void resetGyro() {
